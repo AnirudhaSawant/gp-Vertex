@@ -19,8 +19,8 @@ public class MultiOperationalsVerticle extends AbstractVerticle {
             int result = a + b;
             logger.info("Addition: {}", result);
             vertx.setTimer(3000, id2 -> {
-                int multResult = a * b + result;
-                logger.info("Multiplication: {}", multResult);
+                int multiResult = a * b + result;
+                logger.info("Multiplication: {}", multiResult);
             });
         });
     }

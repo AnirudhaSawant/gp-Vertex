@@ -22,16 +22,16 @@ public class FirstHttpServer extends AbstractVerticle {
 
 
         Future<HttpServer> serverFuture = vertx.createHttpServer()
-                .requestHandler(AppRouter.init(vertx,config()))
+                .requestHandler(AppRouter.init(vertx, config()))
                 .listen(config().getInteger("port"));
-        serverFuture.onSuccess(httpServer -> logger.info("Server running on port {}",httpServer.actualPort()));
+        serverFuture.onSuccess(httpServer -> logger.info("Server running on port {}", httpServer.actualPort()));
 
-        serverFuture.onFailure(exception -> logger.info("Cannot start server {}",exception.getMessage()));
+        serverFuture.onFailure(exception -> logger.info("Cannot start server {}", exception.getMessage()));
     }
 
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
-        DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("port",8083).put("connection_string","mongodb+srv://admin:admin123@cluster0.jggywij.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").put("db_name","college_db").put("useObjectId",true));
-        vertx.deployVerticle(new FirstHttpServer(),options);
+        DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("port", 8083).put("connection_string", "mongodb+srv://admin:admin123@cluster0.jggywij.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").put("db_name", "college_db").put("useObjectId", true));
+        vertx.deployVerticle(new FirstHttpServer(), options);
     }
 }
